@@ -1,0 +1,7 @@
+# Extends the sdDoctrineGuard user model
+sfGuardUser:
+  facebook_uid:
+    type: integer(5)
+  location:
+      type: string
+  
