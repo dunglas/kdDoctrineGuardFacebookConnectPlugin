@@ -6,8 +6,19 @@
  * with this source code in the file LICENSE.
  */
 
+/**
+ * Logs or registers automatically Facebook connected users.
+ * 
+ * @package kdDoctrineGuardFacebookConnec
+ * @subpackage lib
+ * @author Kévin Dunglas <dunglas@gmail.com>
+ */
 class kdDoctrineGuardFacebookConnectFilter extends sfFilter {
-
+  /**
+   * Executes the filter and chains.
+   * 
+   * @param sfFilterChain $filterChain 
+   */
   public function execute($filterChain)
   {
     if ($this->isFirstCall() && $this->context->getUser()->isAnonymous()) {
@@ -20,27 +31,16 @@ class kdDoctrineGuardFacebookConnectFilter extends sfFilter {
           $me = $facebook->api('/me');
 
           if ($me) {
-            $sfGuardUser = Doctrine_Core::getTable('sfGuardUser')->findOneByFacebookUid($uid);
-            if (!$sfGuardUser) {
-              $sfGuardUser = new sfGuardUser();
-              $sfGuardUser->setUsername('Facebook_' . $uid);
-              $sfGuardUser->setFacebookUid($uid);
-            }
-
-            $sfGuardUser->setFirstName($me['first_name']);
-            $sfGuardUser->setLastName($me['last_name']);
-            $sfGuardUser->setLocation($me['location']);
-            $sfGuardUser->save();
+            $sfGuardUser = kdDoctrineGuardFacebookConnect::updateOrCreateUser($me);
 
             $this->context->getUser()->signIn($sfGuardUser);
           }
         } catch (FacebookApiException $ex) {
-          
+          $this->getContext()->getLogger()->err($ex);
         }
       }
     }
 
     $filterChain->execute();
   }
-
 }

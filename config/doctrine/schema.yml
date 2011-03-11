@@ -1,7 +1,25 @@
 # Extends the sdDoctrineGuard user model
 sfGuardUser:
-  facebook_uid:
-    type: integer(5)
-  location:
+  columns:
+    location:
+        type: string
+    hometown:
       type: string
-  
+    gender:
+      type: enum
+      values: [male, female]
+    locale:
+      type: string
+    timezone:
+      type: string
+    facebook_id:
+      type: integer(5)
+      unique: true
+    facebook_verified:
+      type: boolean
+    facebook_link:
+      type: text
+    facebook_location_id:
+      type: integer
+    facebook_hometown_id:
+      type: integer

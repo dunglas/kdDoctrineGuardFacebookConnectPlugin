@@ -1,0 +1,6 @@
+all:
+  facebook:
+    appId:                  xxx
+    secret:                 xxx
+    cookie:                 true
+    script_lang:            fr_FR

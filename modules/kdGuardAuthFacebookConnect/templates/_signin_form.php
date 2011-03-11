@@ -19,7 +19,7 @@
 
       (function() {
         var e = document.createElement('script');
-        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.src = document.location.protocol + '//connect.facebook.net/<?php echo sfConfig::get('app_facebook_script_lang') ?>/all.js';
         e.async = true;
         document.getElementById('fb-root').appendChild(e);
       }());
