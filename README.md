@@ -6,7 +6,7 @@ _kdDoctrineGuardFacebookConnectPlugin_ extends [_sfDoctrineGuardPlugin_](http://
 
 ## Installation
 
-* Install _sfDoctrineGuardPlugin_ properly.    
+* Install _sfDoctrineGuardPlugin_ properly 
 * Install _kdDoctrineGuardFacebookConnectPlugin_
 
       # Example using git
