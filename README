@@ -1,6 +1,5 @@
 # Facebook Connect for symfony and sfGuard
 
-
 _kdDoctrineGuardFacebookConnectPlugin_ provides an easy way to sign into a symfony 1 application using a Facebook account.
 _kdDoctrineGuardFacebookConnectPlugin_ extends [_sfDoctrineGuardPlugin_](http://www.symfony-project.org/plugins/sfDoctrineGuardPlugin). 
 
