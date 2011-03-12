@@ -9,7 +9,7 @@ _kdDoctrineGuardFacebookConnectPlugin_ extends [_sfDoctrineGuardPlugin_](http://
 * Install _sfDoctrineGuardPlugin_ properly.    
 * Install _kdDoctrineGuardFacebookConnectPlugin_
 
-    # Example using git
+    \# Example using git
     git submodule add http://github.com/dunglas/kdDoctrineGuardFacebookConnectPlugin.git plugins/kdDoctrineGuardFacebookConnectPlugin
 
 * Create [your Facebook application](http://www.facebook.com/developers/)
@@ -28,25 +28,25 @@ _kdDoctrineGuardFacebookConnectPlugin_ extends [_sfDoctrineGuardPlugin_](http://
 
     all:
       facebook:
-        appId:                  xxx   # Your app id
-        secret:                 xxx   # Your app secret
-        cookie:                 true  # Use cookie
-        script_lang:            en_US # Connect button and JavaScript language
+        appId:                  xxx   \# Your app id
+        secret:                 xxx   \# Your app secret
+        cookie:                 true  \# Use cookie
+        script_lang:            en_US \# Connect button and JavaScript language
 
 * Edit `filters.yml` to add the FacebookConnect filter
 
     rendering: ~
     security:  ~
 
-    # Facebook Connect
+    \# Facebook Connect
     facebook:
       class: kdDoctrineGuardFacebookConnectFilter
 
-    # Remember me
+    \# Remember me
     remember_me:
       class: sfGuardRememberMeFilter
 
-    # insert your own filters here
+    \# insert your own filters here
 
     cache:     ~
     execution: ~
@@ -55,7 +55,7 @@ _kdDoctrineGuardFacebookConnectPlugin_ extends [_sfDoctrineGuardPlugin_](http://
 
     all:
       .settings:
-        # ...
+        \# ...
         enabled_modules:        [default, sfGuardAuth, kdGuardAuthFacebookConnect]
 
         login_module:           kdGuardAuthFacebookConnect
