@@ -5,7 +5,6 @@
       window.fbAsyncInit = function() {
         FB.init({
           appId   : '<?php echo $facebook->getAppId(); ?>',
-          //session : <?php //echo $sf_data->getRaw('facebook')->getSession(); ?>,
           status  : true,
           cookie  : true,
           xfbml   : true
@@ -35,7 +34,7 @@
         <td colspan="2">
           <input type="submit" value="<?php echo __('Signin', null, 'sf_guard') ?>" />
           
-          <fb:login-button></fb:login-button>
+          <fb:login-button<?php if (sfConfig::get('app_facebook_perms')) echo ' perms="' . sfConfig::get('app_facebook_perms') . '"' ?>></fb:login-button>
           
           <?php $routes = $sf_context->getRouting()->getRoutes() ?>
           <?php if (isset($routes['sf_guard_forgot_password'])): ?>

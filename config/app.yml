@@ -4,3 +4,4 @@ all:
     secret:                 xxx
     cookie:                 true
     script_lang:            fr_FR
+    perms:                  email
