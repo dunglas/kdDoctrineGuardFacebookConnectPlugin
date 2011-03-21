@@ -59,7 +59,7 @@ class kdDoctrineGuardFacebookConnect {
         $sfGuardUser->setFacebookLink($me['link']);
         $sfGuardUser->setFirstName($me['first_name']);
         $sfGuardUser->setLastName($me['last_name']);
-        if (array_key_exists('verified', $me) {
+        if (array_key_exists('verified', $me)) {
             $sfGuardUser->setFacebookVerified($me['verified']);
         }
         if (array_key_exists('location', $me)) {
