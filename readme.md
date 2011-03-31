@@ -23,6 +23,10 @@ _kdDoctrineGuardFacebookConnectPlugin_ extends [_sfDoctrineGuardPlugin_](http://
         }
       }
 
+* Rebuild your database and classes
+
+      php symfony doctrine:build --all --and-load
+
 * Edit `app.yml` to match your Facebook application settings
 
       all:
@@ -66,5 +70,7 @@ _kdDoctrineGuardFacebookConnectPlugin_ extends [_sfDoctrineGuardPlugin_](http://
           <?php include_slot('fb_connect') ?>
           </body>
           ...
+
+* Update your templates to use the route `kd_guard_signin` for signin and `kd_guard_signout` for logout instead of the sfDoctrineGuard default routes
 
 * Clear the cache with `php symfony cc` and enjoy!
