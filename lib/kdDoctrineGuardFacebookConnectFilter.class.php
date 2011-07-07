@@ -14,33 +14,31 @@
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
 class kdDoctrineGuardFacebookConnectFilter extends sfFilter {
+
   /**
    * Executes the filter and chains.
    * 
    * @param sfFilterChain $filterChain 
    */
-  public function execute($filterChain)
-  {
+  public function execute($filterChain) {
     if ($this->isFirstCall() && $this->context->getUser()->isAnonymous()) {
       $facebook = kdDoctrineGuardFacebookConnect::getFacebook();
-      $session = $facebook->getSession();
 
-      if ($session) {
-        $uid = $facebook->getUser();
-        try {
-          $me = $facebook->api('/me');
+      $uid = $facebook->getUser();
+      try {
+        $me = $facebook->api('/me');
 
-          if ($me) {
-            $sfGuardUser = kdDoctrineGuardFacebookConnect::updateOrCreateUser($me);
+        if ($me) {
+          $sfGuardUser = kdDoctrineGuardFacebookConnect::updateOrCreateUser($me);
 
-            $this->context->getUser()->signIn($sfGuardUser);
-          }
-        } catch (FacebookApiException $ex) {
-          $this->getContext()->getLogger()->err($ex);
+          $this->context->getUser()->signIn($sfGuardUser);
         }
+      } catch (FacebookApiException $ex) {
+        $this->getContext()->getLogger()->err($ex);
       }
     }
 
     $filterChain->execute();
   }
+
 }
