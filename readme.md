@@ -5,71 +5,86 @@ _kdDoctrineGuardFacebookConnectPlugin_ extends [_sfDoctrineGuardPlugin_](http://
 
 ## Installation
 
-* Install _sfDoctrineGuardPlugin_ properly 
+* Install [_sfDoctrineGuardPlugin_](http://www.symfony-project.org/plugins/sfDoctrineGuardPlugin) properly 
 * Install _kdDoctrineGuardFacebookConnectPlugin_
 
-      # Example using git
-      git submodule add http://github.com/dunglas/kdDoctrineGuardFacebookConnectPlugin.git plugins/kdDoctrineGuardFacebookConnectPlugin
+```sh
+# Example using git
+git submodule add http://github.com/dunglas/kdDoctrineGuardFacebookConnectPlugin.git plugins/kdDoctrineGuardFacebookConnectPlugin
+```
 
 * Create [your Facebook application](http://www.facebook.com/developers/)
 * Enable the plugin in the `config/ProjectConfiguration.class.php` file after _sfGuardPlugin_.
 
-      class ProjectConfiguration extends sfProjectConfiguration {
-        public function setup()
-        {
-          $this->enablePlugins('sfDoctrinePlugin');
-          $this->enablePlugins('sfDoctrineGuardPlugin');
-          $this->enablePlugins('kdDoctrineGuardFacebookConnectPlugin');
-        }
-      }
-
+```php
+class ProjectConfiguration extends sfProjectConfiguration {
+  public function setup()
+  {
+    $this->enablePlugins('sfDoctrinePlugin');
+    $this->enablePlugins('sfDoctrineGuardPlugin');
+    $this->enablePlugins('kdDoctrineGuardFacebookConnectPlugin');
+  }
+}
+```
+      
 * Rebuild your database and classes
 
-      php symfony doctrine:build --all --and-load
+```sh
+php symfony doctrine:build --all --and-load
+```
 
 * Edit `app.yml` to match your Facebook application settings
 
-      all:
-        facebook:
-          appId:                  xxx   # Your app id
-          secret:                 xxx   # Your app secret
-          cookie:                 true  # Use cookie
-          script_lang:            en_US # Connect button and JavaScript language
+```yaml
+all:
+  facebook:
+  appId:                  xxx   # Your app id
+  secret:                 xxx   # Your app secret
+  cookie:                 true  # Use cookie
+  script_lang:            en_US # Connect button and JavaScript language
+```
 
 * Edit `filters.yml` to add the FacebookConnect filter
 
-      rendering: ~
-      security:  ~
+```yaml
+rendering: ~
+security:  ~
 
-      # Facebook Connect
-      facebook:
-        class: kdDoctrineGuardFacebookConnectFilter
+# Facebook Connect
+facebook:
+  class: kdDoctrineGuardFacebookConnectFilter
 
-      # Remember me
-      remember_me:
-        class: sfGuardRememberMeFilter
+# Remember me
+remember_me:
+  class: sfGuardRememberMeFilter
 
-      # insert your own filters here
+# insert your own filters here
 
-      cache:     ~
-      execution: ~
-
+cache:     ~
+execution: ~
+```
+      
 * Enable the _kdGuardAuthFacebookConnect_ module and set is a signin module in `settings.yml`
 
-      all:
-        .settings:
-          # ...
-          enabled_modules:        [default, sfGuardAuth, kdGuardAuthFacebookConnect]
+```yaml
+all:
+  .settings:
+    # ...
+    enabled_modules:        [default, sfGuardAuth, kdGuardAuthFacebookConnect]
 
-          login_module:           kdGuardAuthFacebookConnect
-          login_action:           signin
+    login_module:           kdGuardAuthFacebookConnect
+    login_action:           signin
+```
+        
 
 * Add the Facebook Login button JavaScript before the body end tag in your app's layout
 
-          ...
-          <?php include_slot('fb_connect') ?>
-          </body>
-          ...
+```php
+...
+<?php include_slot('fb_connect') ?>
+</body>
+...
+```
 
 * Update your templates to use the route `kd_guard_signin` for signin and `kd_guard_signout` for logout instead of the sfDoctrineGuard default routes
 
