@@ -42,7 +42,8 @@ class BasekdGuardAuthFacebookConnectActions extends sfGuardAuthActions {
       $url = $facebook->getLogoutUrl(array (
         'next' => $url
       ));
-      
+      $facebook->destroySession();
+
       $this->redirect($url);
     }
     
