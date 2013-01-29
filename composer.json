@@ -1,0 +1,19 @@
+{
+    "name": "dunglas/kd-doctrine-guard-facebook-connect-plugin",
+    "description": "Facebook Connect symfony plugin (extends sfGuardPlugin)",
+    "homepage": "https://github.com/dunglas/kdDoctrineGuardFacebookConnectPlugin",
+    "license": "MIT",
+    "keywords": ["facebook", "symfony1"],
+    "type": "symfony1-plugin",
+    "authors": [
+        {
+            "name": "Kévin Dunglas",
+            "email": "dunglas@gmail.com",
+            "homepage": "http://dunglas.fr"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1.0",
+        "facebook/php-sdk": "~3.2"
+    }
+}
